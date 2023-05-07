@@ -51,9 +51,9 @@ namespace Presentation.FormsPrincipal
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
             this.label1.Location = new System.Drawing.Point(425, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 36);
+            this.label1.Size = new System.Drawing.Size(240, 36);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Agenda";
+            this.label1.Text = "Personas Banco";
             // 
             // BtnClose
             // 

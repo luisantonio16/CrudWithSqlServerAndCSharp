@@ -28,7 +28,7 @@ namespace Presentation.FormsPrincipal
 
         private void PrincipalMenu_Load(object sender, EventArgs e)
         {
-            listPersons();
+            listPersonas();
             MoveColumns();
         }
 
@@ -37,7 +37,7 @@ namespace Presentation.FormsPrincipal
             Close();
         }
 
-        private void listPersons()
+        private void listPersonas()
         {
             try
             {
@@ -55,12 +55,10 @@ namespace Presentation.FormsPrincipal
         {
             try
             {
-                DataListado.Columns["Edit"].DisplayIndex = 9;
-                DataListado.Columns["Delete"].DisplayIndex = 9;
+                DataListado.Columns["Edit"].DisplayIndex = 5;
+                DataListado.Columns["Delete"].DisplayIndex = 5;
 
-                DataListado.Columns["state"].Visible = false;
-                DataListado.Columns["Id"].Visible = false;
-                DataListado.Columns["Phone"].Visible = false;
+               
             }
             catch (Exception ex)
             {
@@ -85,7 +83,7 @@ namespace Presentation.FormsPrincipal
         {
             AddAndEditPerson addAndEditPerson = new AddAndEditPerson();
             addAndEditPerson.ShowDialog();
-            listPersons();
+            listPersonas();
         }
 
         private void DataListado_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -94,15 +92,12 @@ namespace Presentation.FormsPrincipal
             {
                 AddAndEditPerson addAndEditPerson = new AddAndEditPerson();
                 addAndEditPerson.Save = true;
-                addAndEditPerson.LblId.Text = DataListado.CurrentRow.Cells["id"].Value.ToString();
-                addAndEditPerson.TxtFirstName.Text = DataListado.CurrentRow.Cells["firtname"].Value.ToString();
-                addAndEditPerson.TxtLastName.Text = DataListado.CurrentRow.Cells["lastName"].Value.ToString();
-                addAndEditPerson.TxtDirection.Text = DataListado.CurrentRow.Cells["direction"].Value.ToString();
-                addAndEditPerson.TxtPhone.Text = DataListado.CurrentRow.Cells["phone"].Value.ToString();
-                addAndEditPerson.CmbCity.Text = DataListado.CurrentRow.Cells["city"].Value.ToString();
-                addAndEditPerson.CmbCountry.Text = DataListado.CurrentRow.Cells["country"].Value.ToString();
+                addAndEditPerson.LblId.Text = DataListado.CurrentRow.Cells["Id"].Value.ToString();
+                addAndEditPerson.TxtNombre.Text = DataListado.CurrentRow.Cells["Nombre1"].Value.ToString();
+                addAndEditPerson.TxtFecha.Value = Convert.ToDateTime(DataListado.CurrentRow.Cells["Fecha1"].Value.ToString());
+
                 addAndEditPerson.ShowDialog();
-                listPersons();
+                listPersonas();
 
             }
             else if (DataListado.Rows[e.RowIndex].Cells["Delete"].Selected)
@@ -115,7 +110,7 @@ namespace Presentation.FormsPrincipal
                     person.stateEntity = StateEntity.Delete;
                     person.Id = Convert.ToInt32(DataListado.CurrentRow.Cells["id"].Value.ToString());
                     string resultado = person.SaveChanged();
-                    listPersons();
+                    listPersonas();
 
                 }
             }

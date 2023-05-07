@@ -19,22 +19,18 @@ namespace DataAccess.Repository
 
         public RepositoriePerson()
         {
-            select = "select * from Person where stateperson = 'Active'";
-            insert = "INSERT INTO Person VALUES(@fistname,@lastname,@country,@city,@direction,@phone,@state)";
-            edit = "UPDATE Person SET fistName=@fistname,lastName=@lastname,country=@country,city=@city,direction=@direction,phone=@phone, stateperson=@state WHERE idPerson =@idperson";
-            delete = "UPDATE Person SET stateperson='delete' WHERE idPerson =@idperson";
+            select = "select * from persona where estadoPersona = 'Activo'";
+            insert = "INSERT INTO persona VALUES(@nombre,@fecha,@estado)";
+            edit = "UPDATE persona SET nombre=@nombre,fechaNacimiento=@fecha WHERE idPersona =@idperson";
+            delete = "UPDATE persona SET estadoPersona='eliminado' WHERE idPersona =@idperson";
         }
 
         public int Add(Person entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@fistname", entity.fistName));
-            parameters.Add(new SqlParameter("@lastname", entity.lastName));
-            parameters.Add(new SqlParameter("@country", entity.country));
-            parameters.Add(new SqlParameter("@city", entity.city));
-            parameters.Add(new SqlParameter("@direction", entity.direction));
-            parameters.Add(new SqlParameter("@phone", entity.phone));
-            parameters.Add(new SqlParameter("@state", entity.status));
+            parameters.Add(new SqlParameter("@nombre", entity.Nombre));
+            parameters.Add(new SqlParameter("@fecha", entity.Fecha));
+            parameters.Add(new SqlParameter("@estado", entity.estadoPersona));
             return ExecuteNonQuery(insert);
         }
 
@@ -49,13 +45,8 @@ namespace DataAccess.Repository
         {
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@idperson", entity.id));
-            parameters.Add(new SqlParameter("@fistname", entity.fistName));
-            parameters.Add(new SqlParameter("@lastname", entity.lastName));
-            parameters.Add(new SqlParameter("@country", entity.country));
-            parameters.Add(new SqlParameter("@city", entity.city));
-            parameters.Add(new SqlParameter("@direction", entity.direction));
-            parameters.Add(new SqlParameter("@phone", entity.phone));
-            parameters.Add(new SqlParameter("@state", entity.status));
+            parameters.Add(new SqlParameter("@nombre", entity.Nombre));
+            parameters.Add(new SqlParameter("@fecha", entity.Fecha));
             return ExecuteNonQuery(edit);
         }
 
@@ -71,14 +62,11 @@ namespace DataAccess.Repository
                 {
 
                     id = Convert.ToInt32(item[0]),
-                    fistName = item[1].ToString(),
-                    lastName = item[2].ToString(),
-                    country = item[3].ToString(),
-                    city = item[4].ToString(),
-                    direction = item[5].ToString(),
-                    phone = item[6].ToString(),
-                    status = item[7].ToString(),
-                    
+                    Nombre = item[1].ToString(),
+                    Fecha = Convert.ToDateTime(item[2].ToString()),
+                       estadoPersona = item[3].ToString(),
+
+
                 });
 
             }

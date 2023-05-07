@@ -14,26 +14,18 @@ namespace Domain.Model
     public class ModelPerson
     {
         private int id;
-        private string firtname;
-        private string lastname;
-        private string country;
-        private string city;
-        private string direction;
-        private string phone;
-        private string state;
+        private string Nombre;
+        private DateTime Fecha;
+        private string estadoPersona;
 
         private List<ModelPerson> listPersons;
         private IRepositoriePerson repositoriePerson;
        
         public StateEntity stateEntity { private get; set; }
         public int Id { get => id; set => id = value; }
-        public string Firtname { get => firtname; set => firtname = value; }
-        public string Lastname { get => lastname; set => lastname = value; }
-        public string Country { get => country; set => country = value; }
-        public string City { get => city; set => city = value; }
-        public string Direction { get => direction; set => direction = value; }
-        public string Phone { get => phone; set => phone = value; }
-        public string State { get => state; set => state = value; }
+        public string Nombre1 { get => Nombre; set => Nombre = value; }
+        public DateTime Fecha1 { get => Fecha; set => Fecha = value; }
+        public string EstadoPersona { get => estadoPersona; set => estadoPersona = value; }
 
         public ModelPerson()
         {
@@ -48,15 +40,10 @@ namespace Domain.Model
             try
             {
                 var PersonDataModels = new Person();
-                //ArticulosDataModels.idArticulo = idArticulo;
                 PersonDataModels.id = id;
-                PersonDataModels.fistName = firtname;
-                PersonDataModels.lastName = lastname;
-                PersonDataModels.country = country;
-                PersonDataModels.city = city;
-                PersonDataModels.direction = direction;
-                PersonDataModels.phone = phone;
-                PersonDataModels.status = state;
+                PersonDataModels.Nombre = Nombre;
+                PersonDataModels.Fecha = Fecha;
+                PersonDataModels.estadoPersona = estadoPersona;
              
 
 
@@ -97,13 +84,10 @@ namespace Domain.Model
                 {
 
                     id = item.id,
-                    firtname = item.fistName,
-                    lastname = item.lastName,
-                    country = item.country,
-                    city = item.city,
-                    direction = item.direction,
-                    phone = item.phone,
-                    state = item.status,
+                    Nombre = item.Nombre,
+                    Fecha = item.Fecha,
+                    estadoPersona =item.estadoPersona
+                   
                 });
             }
             return listPersons;
@@ -111,7 +95,7 @@ namespace Domain.Model
 
         public IEnumerable<ModelPerson> Find(string find)
         {
-            return listPersons.FindAll(p => p.firtname.Contains(find) || p.lastname.Contains(find) || p.country.Contains(find) || p.phone.Contains(find));
+            return listPersons.FindAll(p => p.Nombre.Contains(find));
         }
     }
 }

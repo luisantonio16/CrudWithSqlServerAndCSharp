@@ -53,13 +53,7 @@ namespace Presentation.FormsPrincipal
 
         private bool valid()
         {
-            if (TxtFirstName.Text == "") { MessageBox.Show("The FirstName is incorrect"); return false; }
-            if (TxtLastName.Text == "") { MessageBox.Show("The LastName is incorrect"); return false; }
-            if (TxtDirection.Text == "") { MessageBox.Show("The Direction is incorrect"); return false; }
-
-            if (CmbCountry.SelectedIndex == -1) { MessageBox.Show("The Country is incorrect"); return false; }
-            if (CmbCity.SelectedIndex == -1) { MessageBox.Show("The Country is incorrect"); return false; }
-
+            if (TxtNombre.Text == "") { MessageBox.Show("The FirstName is incorrect"); return false; }
             return true;
 
         }
@@ -70,13 +64,11 @@ namespace Presentation.FormsPrincipal
             {
                 if (Save==false)
                 {
-                    person.Lastname = TxtLastName.Text;
-                    person.Firtname = TxtFirstName.Text;
-                    person.Country = CmbCountry.Text;
-                    person.City = CmbCity.Text;
-                    person.Phone = TxtPhone.Text;
-                    person.State = "Active";
-                    person.Direction = TxtDirection.Text;
+          
+                    person.Nombre1 = TxtNombre.Text;
+                    person.Fecha1 = TxtFecha.Value;
+                    person.EstadoPersona = "Activo";
+                  
 
                     string confirm = person.SaveChanged();
                     FrmSucces succes = new FrmSucces();
@@ -88,13 +80,9 @@ namespace Presentation.FormsPrincipal
                 {
                     person.stateEntity = StateEntity.edit;
                     person.Id = Convert.ToInt32(LblId.Text);
-                    person.Firtname = TxtFirstName.Text;
-                    person.Lastname = TxtLastName.Text;
-                    person.Country = CmbCountry.Text;
-                    person.City = CmbCity.Text;
-                    person.Phone = TxtPhone.Text;
-                    person.Direction = TxtDirection.Text;
-                    person.State = "Active";
+                    person.Nombre1 = TxtNombre.Text;
+                    person.Fecha1 = TxtFecha.Value;
+               
 
                     string confirm = person.SaveChanged();
                     FrmSucces succes = new FrmSucces();
@@ -112,13 +100,8 @@ namespace Presentation.FormsPrincipal
         }
 
         private void ClearTxt()
-        {
-            TxtDirection.Text = "";
-            TxtFirstName.Text = "";
-            TxtLastName.Text = "";
-            TxtPhone.Text = "";
-            CmbCity.SelectedIndex = -1;
-            CmbCountry.SelectedIndex = -1;
+        { 
+            TxtNombre.Text = "";
         }
     }
 }
