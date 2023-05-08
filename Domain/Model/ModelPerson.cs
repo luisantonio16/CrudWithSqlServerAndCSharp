@@ -8,6 +8,7 @@ using DataAccess.Entity;
 using DataAccess.Repository;
 using Domain.ObjectValues;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Model
 {
@@ -21,8 +22,11 @@ namespace Domain.Model
         private List<ModelPerson> listPersons;
         private IRepositoriePerson repositoriePerson;
        
+        //creamos este campo del objeto estado entidad y ponemos su propiedad get privada,
+        //para que el valor de la clase solo sea obtenido desde la clase.
         public StateEntity stateEntity { private get; set; }
         public int Id { get => id; set => id = value; }
+        [Required(ErrorMessage ="El campo nombre es requerido")]
         public string Nombre1 { get => Nombre; set => Nombre = value; }
         public DateTime Fecha1 { get => Fecha; set => Fecha = value; }
         public string EstadoPersona { get => estadoPersona; set => estadoPersona = value; }
@@ -82,17 +86,17 @@ namespace Domain.Model
             {
                 listPersons.Add(new ModelPerson
                 {
-
                     id = item.id,
                     Nombre = item.Nombre,
                     Fecha = item.Fecha,
                     estadoPersona =item.estadoPersona
-                   
                 });
             }
             return listPersons;
         }
 
+        //Filtro del tipo Interfaz Enumerable que tiene la entidad modelo persona y un parametro de tipo string.
+        //este metodo devuelve una lista del modelo de persona.
         public IEnumerable<ModelPerson> Find(string find)
         {
             return listPersons.FindAll(p => p.Nombre.Contains(find));
